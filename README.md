@@ -3,7 +3,7 @@
 > 后台系统
 
 ## Build Setup
-
+##菜单使用递归组件实现层级嵌套循环展示菜单
 
 ## 使用官方提供的babel-plugin-component按需引入element-ui组件
 ## 待开发功能，全站动态换肤
