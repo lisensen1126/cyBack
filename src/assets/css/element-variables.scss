@@ -1,0 +1,60 @@
+/* 改变主题色变量 */
+$--color-primary: #FF9966;
+//所有图标颜色
+$--icon-color: #FF9966 !default;
+$--color-text-primary:#FF9966;
+$--color-text-secondary:#FF9966;
+$--color-text-regular :#FF9966;
+$--color-info:#FF9966;
+$--border-color-lighter:  #FF9966 !default;
+$--background-color-base:transparent;
+//请输入一类的默认字的颜色
+$--color-text-placeholder:rgba(255,255,255,0.2);
+
+
+
+
+//input
+$--input-icon-color:#FF9966;
+$--input-focus-border:#FF9966;
+$--input-hover-border:#FF9966;
+$--input-focus-border:#FF9966;
+$--border-color-base: #FF9966 !default;
+/// color|1|Border Color|3
+$--border-color-light: #FF9966 !default;
+/// color|1|Border Color|3
+
+//tag
+
+//select
+$--select-dropdown-background:#6f60aa;//下拉框的背景色
+$--select-option-hover-background:rgba(255,255,255,0.2);//下拉框每个选项的active状态
+$--select-option-selected-font-color:#FF9966;//下拉框active的栏目需要改变字体
+$--select-option-color:#FF9966;
+$--select-input-color:#FF9966;
+$--popover-background-color:#FF9966;
+
+
+// table
+$--table-header-background-color:rgba(255,255,255,0.2);
+$--table-border-color:#FF9966;
+$--table-row-hover-background-color: rgba(255,255,255,0.2);
+$--table-current-row-background-color: #f5d2c1;
+/// color||Color|0
+$--table-header-background-color: transparent;
+$--table-fixed-box-shadow: 0 0 10px rgba(0, 0, 0, .12) !default;
+
+//菜单变量
+$--input-background-color:transparent;//input框背景颜色
+$--menu-background-color:#6f60aa;//菜单背景颜色
+$--color-text-secondary:#FF9966;//菜单 i 标签icon的颜色
+$--menu-item-hover-fill:rgba(0,0,0,0.2);//鼠标挪到菜单栏目上的颜色
+$--menu-item-font-color:#FF9966;
+
+//滚动条
+$--scrollbar-thumb-background: #FF9966;
+  $--scrollbar-track-background: rgba(255,255,255,0.1);
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+
+@import "~element-ui/packages/theme-chalk/src/index";

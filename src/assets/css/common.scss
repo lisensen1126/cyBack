@@ -1,0 +1,121 @@
+.switchLocal{
+    text-align: right;
+}
+
+.projectTitle{
+    text-align: left;
+    font-size: 23px;
+    padding: 0vh 0;
+    color: #fff;
+}
+
+.el-input .el-input-group__prepend input{
+    text-align: center;
+}
+.el-input__suffix{
+    opacity: 0.5;
+}
+.el-input__suffix:hover{
+    opacity: 1;
+}
+ul.el-menu{
+    height: 100%;
+    background-color: transparent;
+    .el-menu-item,.el-submenu .el-submenu__title,.el-submenu__title i,.el-menu-item i{
+        color: #f96;
+    }
+    .el-submenu__title:hover{
+        background-color: rgba(255, 255, 255, 0.15);
+    }
+    .el-menu-item:focus, .el-menu-item:hover{
+        background-color: rgba(255, 255, 255, 0.15);
+    }
+}
+body{
+    background: #6f60aa;
+}
+/* input{
+    background-color: #6f60aa !important;
+    color: #fff !important;
+} */
+.el-submenu__title,.el-menu-item{
+    display: flex;
+    align-items: center;
+}
+.center{
+    align-self: center;
+}
+*::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+*::-webkit-scrollbar-thumb {
+ border-radius: 10px;
+-webkit-box-shadow: inset 0 0 5px #f96;
+background: #f96;
+}
+*::-webkit-scrollbar-track {
+ -webkit-box-shadow: inset 0 0 5px rgba(255,255,255,0.2);
+border-radius: 0;
+background: rgba(255,255,255,0.1);
+border-radius: 10px;
+ }
+ .el-table tr{
+     background-color: transparent !important;
+ }
+ .el-table.el-table--border{
+     background-color: transparent;
+ }
+ .el-table tr th{
+     background-color: transparent;
+ }
+ .el-input-group__append, .el-input-group__prepend{
+     width: 60px !important;
+ }
+ .el-pagination.is-background .btn-prev, .el-pagination.is-background .btn-next, .el-pagination.is-background .el-pager li{
+     background-color: transparent !important;
+     border: 1px solid #f96;
+ }
+ .el-pagination.is-background .el-pager li.active{
+    background-color: #f96 !important;
+ }
+ .el-pagination{
+     margin-top: 20px;
+ }
+ .el-button.el-button--info{
+     background-color: transparent;
+ }
+ .el-button.el-button--danger{
+    background-color: transparent;
+}
+.el-button.el-button--success{
+    background-color: transparent;
+}
+.el-button.el-button--warning{
+    background-color: transparent;
+}
+.el-button.el-button--primary{
+    background-color: transparent;
+}
+button.el-button{
+    color: #f96;
+}
+button.el-button:hover{
+    color: #fff;
+}
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+    /* width: 200px; */
+    min-height: 400px;
+  }
+.el-menu--vertical{
+    border: 1px solid #f96;
+}
+.el-menu{
+    width: 200px;
+}
+/* .el-menu--collapse>div>li .el-submenu__title span,.el-menu--collapse>div>li .el-submenu__title .el-icon-arrow-right{
+    display: none;
+} */
+.el-menu-item.is-active{
+    background-color: rgba(0, 0, 0, 0.15);
+}
