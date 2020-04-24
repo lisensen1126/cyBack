@@ -32,7 +32,7 @@ ul.el-menu{
     }
 }
 body{
-    background: #6f60aa;
+    background: #fff;
 }
 /* input{
     background-color: #6f60aa !important;
@@ -72,12 +72,29 @@ border-radius: 10px;
  .el-input-group__append, .el-input-group__prepend{
      width: 60px !important;
  }
- .el-pagination.is-background .btn-prev, .el-pagination.is-background .btn-next, .el-pagination.is-background .el-pager li{
+ .el-pagination.is-background .btn-prev, .el-pagination.is-background .btn-next, .el-pagination.is-background ul.el-pager li{
      background-color: transparent !important;
      border: 1px solid #f96;
+     color: #f96;
  }
+ 
  .el-pagination.is-background .el-pager li.active{
     background-color: #f96 !important;
+ }
+ .el-pagination.is-background ul.el-pager li:not(.disabled):hover{
+     color: #fff;
+     
+ }
+ .el-input-group__prepend{
+    background-color: transparent !important;
+    border: none !important;
+    color: #f96 !important;
+    border-radius: 0 !important;
+ }
+ input.el-input__inner{
+     background-color: transparent ;
+     border: 1px solid #f96 ;
+     color: #f96 ;
  }
  .el-pagination{
      margin-top: 20px;

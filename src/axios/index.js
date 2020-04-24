@@ -1,4 +1,5 @@
 import axios from 'axios'
+import store from '@/store'
 import { Message } from 'element-ui'
 // import store from '@/store'
 // 生成一个 axios 实例
@@ -18,7 +19,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 // 请求 拦截器
 instance.interceptors.request.use(config => {
-  // config.headers.Authorization = 'Bearer ' + '0cb1f0e9e2fe49b59edff554faf9572f_oat'
+  config.headers.Authorization = store.state.headerToken
   // if (store.state.isBF) {
   //   config.headers.idType = 'openid'
   //   console.log('BF环境，请求头需加上idType', config.headers.idType)

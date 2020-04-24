@@ -5,11 +5,11 @@
 					<el-input v-model='searchWord' placeholder='请输入(支持模糊搜索)' clearable @keyup.enter.native="getUserList">
 						<el-select v-model="selectSearchType" slot="prepend" placeholder="请选择">
 							<el-option label="用户名" value="userName"></el-option>
-							<el-option label="手机号码" value="telPhone"></el-option>
+							<el-option label="手机号码" value="phone"></el-option>
 						</el-select>
 					</el-input>
 				</div>
-				<el-button icon="el-icon-search" type='primary' @click='getUserList'>搜索</el-button><el-button icon="el-icon-circle-plus" type="success" @click='addUser()'>添加</el-button>
+				<el-button icon="el-icon-search" type='primary' @click='getUserList'>搜索</el-button><el-button icon="el-icon-circle-plus" type="success" @click='addAdminUser()'>添加</el-button>
     </el-row>
     <el-row>
         <el-table :data="userList" style="width: 100%" border>
@@ -31,7 +31,7 @@
 						<el-table-column prop="telPhone" label="电话" width='120px' header-align='center' align='center'>
 							<template slot-scope="scope">
 								<i class="el-icon-phone"></i>
-								<span>{{ scope.row.telPhone }}</span>
+								<span>{{ scope.row.phone }}</span>
 							</template>
 						</el-table-column>
 						<el-table-column label="注册时间" sortable header-align='center' align='left'>
@@ -63,6 +63,7 @@
 </template>
 
 <script>
+// import axios from 'axios'
 export default {
   data () {
     return {
@@ -73,7 +74,8 @@ export default {
         dataTotal: 0,
         currentPage: 1,
         pageSize: this.$store.state.pageSize
-      }
+      },
+      count: 1
     }
   },
   components: {},
@@ -84,7 +86,8 @@ export default {
   mounted () {},
   watch: {},
   methods: {
-    async getUserList () {
+    // 获取所有用户 带分页功能 每页最大显示15条(后台控制)
+    getUserList () {
       let params = {
         currentPage: this.pageData.currentPage,
         pageSize: this.$store.state.pageSize
@@ -92,11 +95,15 @@ export default {
       if (this.searchWord) {
         params[this.selectSearchType] = this.searchWord
       }
-      let res = await this.$get('/getUserList', params)
-      // console.log('获取到的所有用户列表', res.data)
-      this.userList = res.data
-      this.pageData.dataTotal = res.total
+      this.$get('/admin/getadminUserList', params).then(res => {
+        if (res.flag) {
+          console.log('获取到的所有用户列表', res)
+          this.userList = res.data.userList
+          this.pageData.dataTotal = res.data.total
+        }
+      })
     },
+    // 根据性别计算tag的状态
     formatSexType (type) {
       if (type === '0') {
         return 'warning'
@@ -106,17 +113,51 @@ export default {
         return 'danger'
       }
     },
+    // 编辑用户信息
     async updateUser (index, userInfo) {
       console.log('index,row', index, userInfo)
       let res = await this.$post('/updateUserInfo', userInfo)
       console.log('res 更新结果', res)
+    },
+    // 添加用户(需管理员权限)
+    async addAdminUser () {
+      this.count++
+      console.log('count', this.count)
+      let userInfo = {
+        userName: 'userName56' + this.count,
+        passWord: 'password2' + this.count,
+        email: 'email56' + this.count,
+        phone: '4456' + this.count,
+        sex: 1,
+        name: '1232'
+      }
+      let res = await this.$post('/admin/regAdminUser', userInfo)
+      console.log('ressssssss', res)
+      if (res.flag) {
+        this.$message({type: 'success', message: `Hi ${res.msg} `})
+        this.getUserList()
+      }
+      // if(res.data)
+    },
+    // 通过id去删除用户
+    deleteUser (index, user) {
+      console.log('user', user.id)
+      this.$delete(`/admin/deleteUser/${user.id}`).then(res => {
+        if (res.flag) {
+          this.$message({type: 'success', message: `Hi ${res.msg} `})
+          this.getUserList()
+        }
+      }).catch(err => {
+        console.log('err', err)
+      })
     }
+
   },
   filters: {
     'formatSex': function (params) {
-      if (params === '0') {
+      if (params === 0) {
         return '男'
-      } else if (params === '1') {
+      } else if (params === 1) {
         return '女'
       } else {
         return '保密'

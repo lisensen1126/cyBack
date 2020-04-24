@@ -26,6 +26,7 @@
 
 <script>
 import switchLocal from '@/components/switchLocal'
+import md5 from 'js-md5'
 export default {
   data () {
     var checkPwd = (rule, value, callback) => {
@@ -66,10 +67,16 @@ export default {
       console.log('this.ruleForm', this.userForm)
       this.$refs[userForm].validate(async (valid) => {
         if (valid) {
-          const res = await this.$get('/login', this.userForm)
+          let loginData = Object.assign({}, this.userForm)
+          loginData.passWord = md5(this.userForm.passWord)
+          const res = await this.$get('/admin/login', loginData)
           console.log('返回的数据', res)
           if (res && res.flag) {
-            this.$store.commit('setUser', res.data)
+            let currentUser = res.data.userInfo
+            if (res.data.token) {
+              this.$store.commit('setToken', res.data.token)
+            }
+            this.$store.commit('setUser', currentUser)
             this.$message({type: 'success', message: `Hi ${this.$store.state.user.userName} 欢迎你`})
             this.$router.push('/home')
           }

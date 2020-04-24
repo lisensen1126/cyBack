@@ -7,12 +7,12 @@ export function get (url, data) {
   })
 }
 export function post (url, data, type = 'json') {
-  console.log(JSON.stringify(data, {}, 4))
+  // console.log(JSON.stringify(data, {}, 4))
   var contentType
   if (type === 'json') {
     contentType = 'application/json'
   } else if (type === 'form') {
-    contentType = ''
+    contentType = 'multipart/form-data'
   } else {
     contentType = 'application/x-www-form-urlencoded;charset=utf-8'
   }

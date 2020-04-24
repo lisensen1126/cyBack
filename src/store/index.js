@@ -9,7 +9,9 @@ export default new Vuex.Store({
   state: {
     i18nLocal: localStorage.local ? localStorage.local : 'zh',
     user: localStorage.user ? JSON.parse(localStorage.user) : {},
-    pageSize: 10
+    pageSize: 10, // 后台接口判定了最大支持15条
+    BASE_URL: process.env.BASE_URL,
+    headerToken: localStorage.headerToken ? localStorage.headerToken : ''
   },
   actions: {
     changeCurrentCity (ctx, indexNews) {
@@ -26,6 +28,10 @@ export default new Vuex.Store({
       console.log('用户信息', user)
       localStorage.setItem('user', JSON.stringify(user))
       state.user = user
+    },
+    setToken (state, headerToken) {
+      localStorage.setItem('headerToken', headerToken)
+      state.headerToken = headerToken
     }
   }
 })

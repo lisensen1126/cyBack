@@ -35,64 +35,40 @@ export default {
             'iconClass': 'el-icon-mouse',
             'router': '/userCenter4'
           },
-          'childs': [{
-            'entity': {
-              'id': '4-1',
-              'menuName': '用户管理一层',
-              'iconClass': 'el-icon-mouse',
-              'router': '/manageUser3'
-            },
-            'childs': [{
+          'childs': [
+            {
               'entity': {
-                'id': '5-1',
-                'menuName': '5用户管理而二层',
+                'id': '4233333-2',
+                'menuName': '个人中心',
                 'iconClass': 'el-icon-mouse',
-                'router': '/manageUser1'
-              },
-              'childs': [{
-                'entity': {
-                  'id': '5-1',
-                  'menuName': '6用户管理三层',
-                  'iconClass': 'el-icon-mouse',
-                  'router': '/manageUser2'
-                }
+                'router': '/myCenter'
               }
-              ]
+            },
+            {
+              'entity': {
+                'id': '4',
+                'menuName': '用户中心',
+                'iconClass': 'el-icon-mouse',
+                'router': '/userCenter'
+              }
+            },
+            {
+              'entity': {
+                'id': '4',
+                'menuName': '日志管理',
+                'iconClass': 'el-icon-mouse',
+                'router': '/logs'
+              }
             }
-            ]
-          },
-          {
-            'entity': {
-              'id': '4233333-2',
-              'menuName': '个人中心',
-              'iconClass': 'el-icon-mouse',
-              'router': '/myCenter33'
-            }
-          },
-          {
-            'entity': {
-              'id': '4233333-2',
-              'menuName': '个人中心',
-              'iconClass': 'el-icon-mouse',
-              'router': '/myCenter'
-            }
-          },
-          {
-            'entity': {
-              'id': '4',
-              'menuName': '用户中心',
-              'iconClass': 'el-icon-mouse',
-              'router': '/userCenter'
-            }
-          }, {
-            'entity': {
-              'id': '422',
-              'menuName': '用户中心22',
-              'iconClass': 'el-icon-mouse',
-              'router': '/userCenter2222'
-            }
-          }
           ]
+        },
+        {
+          'entity': {
+            'id': '3',
+            'menuName': '接口管理',
+            'iconClass': 'el-icon-s-cooperation',
+            'router': '/api'
+          }
         }
       ],
       childs1Flag: false

@@ -9,8 +9,8 @@
         <el-form-item :label="$t('pwd')" prop="passWord">
           <el-input v-model.trim="regForm.passWord" :placeholder="$t('placeholder.inputpwd')"></el-input>
         </el-form-item>
-        <el-form-item :label="$t('telPhone')" prop="telPhone">
-          <el-input v-model.trim="regForm.telPhone" :placeholder="$t('placeholder.plsInput')"></el-input>
+        <el-form-item :label="$t('telPhone')" prop="phone">
+          <el-input v-model.trim="regForm.phone" :placeholder="$t('placeholder.plsInput')"></el-input>
         </el-form-item>
         <el-form-item :label="$t('name')" prop="normal">
           <el-input v-model.trim="regForm.name" :placeholder="$t('placeholder.plsInput')"></el-input>
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import md5 from 'js-md5'
 export default {
   data () {
     var checkPwd = (rule, value, callback) => {
@@ -56,7 +57,7 @@ export default {
         passWord: '', // 密码
         sex: '', // 性别 0男 1女 2保密
         email: '', // 邮箱
-        telPhone: ''// 电话
+        phone: ''// 电话
       },
       rules: {
         userName: [
@@ -67,7 +68,7 @@ export default {
           { required: true, message: this.$t('placeholder.inputError'), trigger: 'blur' },
           { validator: checkPwd, trigger: 'blur' }
         ],
-        telPhone: [
+        phone: [
           { required: true, message: this.$t('placeholder.inputError'), trigger: 'blur' }
         ],
         normal: [
@@ -89,7 +90,9 @@ export default {
       console.log('this.ruleForm', this.userForm)
       this.$refs.regForm.validate(async (valid) => {
         if (valid) {
-          const res = await this.$get('/reg', this.regForm)
+          let formData = Object.assign({}, this.regForm)
+          formData.passWord = md5(this.regForm.passWord)
+          const res = await this.$post('/admin/regAdminUser', formData)
           console.log('返回的数据', res)
           if (res && res.flag) {
             this.$message({type: 'success', message: '注册成功,请返回登录页面登录'})

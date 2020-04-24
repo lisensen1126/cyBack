@@ -41,8 +41,18 @@ export default new Router({
           name: 'MyCenter',
           alias: '/myCenter',
           component: () => import('@/pages/userCenter/myCenter')
+        }, {
+          path: '/userCenter/adminUserLogs',
+          name: 'AdminUserLogs',
+          alias: '/logs',
+          component: () => import('@/pages/userCenter/adminUserLogs')
         }
       ]
+    },
+    {
+      path: '/api',
+      name: 'Api',
+      component: () => import('@/pages/api/api')
     }
   ]
 })
