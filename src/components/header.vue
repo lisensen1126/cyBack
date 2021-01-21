@@ -33,7 +33,9 @@ export default {
   methods: {
     logout () {
       this.$store.commit('setUser', {})
+      this.$store.commit('setToken', '')
       localStorage.removeItem('user')
+      localStorage.removeItem('headerToken')
       this.$router.push('/login')
     },
     goMyCenter () {

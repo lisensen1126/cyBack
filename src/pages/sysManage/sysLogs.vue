@@ -1,6 +1,7 @@
 <template>
-  <div class="apiPage">
-    api页面
+  <div class="sysLogsPage">
+    <h2>系统日志</h2>
+
   </div>
 </template>
 
@@ -14,17 +15,17 @@ export default {
   components: {},
   computed: {},
   created () {
-    this.getApiStatus()
+    this.getSysLogs()
   },
   mounted () {},
   watch: {},
   methods: {
-    getApiStatus () {
-      this.$get('/admin/apiStatus').then(res => {
-        console.log('res', res)
-      }).catch(err => {
-        console.log('err', err)
-      })
+    getSysLogs () {
+    //   this.$get('/admin/apiStatus').then(res => {
+    //     console.log('res', res)
+    //   }).catch(err => {
+    //     console.log('err', err)
+    //   })
     }
   }
 }

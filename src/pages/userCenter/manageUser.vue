@@ -9,7 +9,9 @@
 						</el-select>
 					</el-input>
 				</div>
-				<el-button icon="el-icon-search" type='primary' @click='getUserList'>搜索</el-button><el-button icon="el-icon-circle-plus" type="success" @click='addAdminUser()'>添加</el-button>
+				<el-button icon="el-icon-search" type='primary' @click='getUserList'>搜索</el-button>
+        <el-button icon="el-icon-circle-plus" type="success" @click='addAdminUser()'>添加</el-button>
+        <el-button icon="el-icon-download" type="success" @click='exportExcel()'>导出</el-button>
     </el-row>
     <el-row>
         <el-table :data="userList" style="width: 100%" border>
@@ -63,7 +65,7 @@
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from 'axios'
 export default {
   data () {
     return {
@@ -146,6 +148,49 @@ export default {
         if (res.flag) {
           this.$message({type: 'success', message: `Hi ${res.msg} `})
           this.getUserList()
+        }
+      }).catch(err => {
+        console.log('err', err)
+      })
+    },
+    exportExcel () {
+      axios.defaults.headers['Authorization'] = this.$store.state.headerToken
+      axios({ // 用axios发送post请求
+        method: 'get',
+        url: `${process.env.BASE_URL}/admin/downloadAdminUserListExcel`, // 请求地址
+        responseType: 'blob' // 表明返回服务器返回的数据类型
+      }).then(res => {
+        console.log('res', res)
+        if (res.data.type === 'application/json') {
+          console.log('返回的不是文件，是josn')
+          let reader = new FileReader()
+          reader.onload = e => {
+            if (e.target.readyState === 2) {
+              let res = {}
+              res = JSON.parse(e.target.result)
+              console.info('back:: ', res)
+              if (!res.flag) {
+                this.$message.error(res.msg)
+              }
+            }
+          }
+          reader.readAsText(res.data)
+        } else {
+          const content = res.data
+          const blob = new Blob([content])
+          const fileName = '测试表格123.xls'
+          if ('download' in document.createElement('a')) { // 非IE下载
+            const elink = document.createElement('a')
+            elink.download = fileName
+            elink.style.display = 'none'
+            elink.href = URL.createObjectURL(blob)
+            document.body.appendChild(elink)
+            elink.click()
+            URL.revokeObjectURL(elink.href) // 释放URL 对象
+            document.body.removeChild(elink)
+          } else { // IE10+下载
+            navigator.msSaveBlob(blob, fileName)
+          }
         }
       }).catch(err => {
         console.log('err', err)

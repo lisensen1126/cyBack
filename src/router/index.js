@@ -50,9 +50,29 @@ export default new Router({
       ]
     },
     {
-      path: '/api',
+      path: '/sysManage',
       name: 'Api',
-      component: () => import('@/pages/api/api')
+      redirect: 'sysLogs',
+      component: () => import('@/pages/sysManage/sysManage'),
+      children: [
+        {
+          path: '/sysManage/sysLogs',
+          name: 'SysLogs',
+          alias: '/sysLogs',
+          component: () => import('@/pages/sysManage/sysLogs')
+        }, {
+          path: '/sysManage/watchApi',
+          name: 'WatchApi',
+          alias: '/watchApi',
+          component: () => import('@/pages/sysManage/watchApi')
+        },
+        {
+          path: '/sysManage/dataAnalysis',
+          name: 'DataAnalysis',
+          alias: '/dataAnalysis',
+          component: () => import('@/pages/sysManage/dataAnalysis')
+        }
+      ]
     }
   ]
 })

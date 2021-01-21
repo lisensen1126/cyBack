@@ -8,7 +8,10 @@
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "build:dev": "cross-env NODE_ENV=dev env_config=dev node build/build.js",
+    "build:sit": "cross-env NODE_ENV=sit env_config=sit node build/build.js",
+    "build:prod": "cross-env NODE_ENV=prod env_config=prod node build/build.js"
   },
   "dependencies": {
     "js-md5": "^0.7.3",
@@ -30,7 +33,9 @@
     "babel-preset-stage-2": "^6.22.0",
     "chalk": "^2.0.1",
     "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^7.0.2",
     "css-loader": "^0.28.0",
+    "echarts": "^4.7.0",
     "element-ui": "^2.13.0",
     "eslint": "^4.15.0",
     "eslint-config-standard": "^10.2.1",
@@ -45,6 +50,7 @@
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",
+    "html2canvas": "^1.0.0-rc.5",
     "node-notifier": "^5.1.2",
     "node-sass": "^4.13.1",
     "optimize-css-assets-webpack-plugin": "^3.2.0",

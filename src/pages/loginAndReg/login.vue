@@ -60,7 +60,9 @@ export default {
   components: {switchLocal},
   computed: {},
   created () {},
-  mounted () {},
+  mounted () {
+    this.$store.commit('setToken', '')
+  },
   watch: {},
   methods: {
     submitForm (userForm) {

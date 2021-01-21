@@ -32,6 +32,9 @@ export default new Vuex.Store({
     setToken (state, headerToken) {
       localStorage.setItem('headerToken', headerToken)
       state.headerToken = headerToken
+      if (!headerToken) {
+        localStorage.removeItem('headerToken')
+      }
     }
   }
 })

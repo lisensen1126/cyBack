@@ -64,11 +64,37 @@ export default {
         },
         {
           'entity': {
-            'id': '3',
-            'menuName': '接口管理',
-            'iconClass': 'el-icon-s-cooperation',
-            'router': '/api'
-          }
+            'id': '5',
+            'menuName': '系统管理',
+            'iconClass': 'el-icon-mouse',
+            'router': '/sysManage'
+          },
+          'childs': [
+            {
+              'entity': {
+                'id': '4233333-2',
+                'menuName': '系统日志',
+                'iconClass': 'el-icon-mouse',
+                'router': '/sysLogs'
+              }
+            },
+            {
+              'entity': {
+                'id': '7',
+                'menuName': '接口监测',
+                'iconClass': 'el-icon-mouse',
+                'router': '/watchApi'
+              }
+            },
+            {
+              'entity': {
+                'id': '77',
+                'menuName': '数据分析',
+                'iconClass': 'el-icon-mouse',
+                'router': '/dataAnalysis'
+              }
+            }
+          ]
         }
       ],
       childs1Flag: false
